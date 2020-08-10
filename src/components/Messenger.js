@@ -8,11 +8,13 @@ class Messenger extends React.Component {
     super();
     this.state = {
       message: '',
+      idCont: 0,
       msgList: []
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.addMessage = this.addMessage.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(event) {
@@ -23,10 +25,20 @@ class Messenger extends React.Component {
 
   addMessage(event) {
     this.setState({
-      msgList: [...this.state.msgList, this.state.message],
+      msgList: [...this.state.msgList, { id: this.state.idCont, msg: this.state.message }],
+      idCont: this.state.idCont + 1,
       message: ''
     });
     event.preventDefault();
+  }
+
+  handleDelete(id) {
+    let filteredList = this.state.msgList.filter(el => {
+      return el.id !== id;
+    });
+    this.setState({
+      msgList: filteredList
+    });
   }
 
   render() {
@@ -42,7 +54,7 @@ class Messenger extends React.Component {
           />
           <button>Enviar</button>
         </form>
-        <MsgList msgList={this.state.msgList} />
+        <MsgList msgList={this.state.msgList} handleDelete={this.handleDelete} />
       </React.Fragment>
     );
   }

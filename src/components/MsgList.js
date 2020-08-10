@@ -1,25 +1,26 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const MsgList = props => {
-  const msgList = props.msgList.map((msg, index) => {
+class MsgList extends React.Component {
+  delete(id) {
+    this.props.handleDelete(id);
+  }
+  render() {
     return (
-      <li key={index}>
-        {msg}
-        <button>
-          <FontAwesomeIcon icon={faTrash} color='red' />
-        </button>
-      </li>
+      <React.Fragment>
+        <h5>Mensajes enviados:</h5>
+        <ul>
+          {this.props.msgList.map(msg => {
+            return (
+              <li key={msg.id}>
+                {msg.msg}
+                <button onClick={this.delete.bind(this, msg.id)}>delete</button>
+              </li>
+            );
+          })}
+        </ul>
+      </React.Fragment>
     );
-  });
-
-  return (
-    <React.Fragment>
-      <h5>Mensajes enviados:</h5>
-      <ul>{msgList}</ul>
-    </React.Fragment>
-  );
-};
+  }
+}
 
 export default MsgList;
