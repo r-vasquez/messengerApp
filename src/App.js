@@ -4,9 +4,14 @@ import Messenger from './components/Messenger';
 
 function App() {
   return (
-    <div>
-      <Messenger />
-    </div>
+    <React.Fragment>
+      <h3>Messenger App</h3>
+      <div className='container'>
+        <Messenger />
+        <Messenger />
+        <Messenger />
+      </div>
+    </React.Fragment>
   );
 }
 

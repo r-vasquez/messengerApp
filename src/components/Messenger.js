@@ -2,8 +2,6 @@ import React from 'react';
 import MsgList from './MsgList';
 
 class Messenger extends React.Component {
-  listaTemp = ['hola', 'como', 'estas'];
-
   constructor() {
     super();
     this.state = {
@@ -43,7 +41,7 @@ class Messenger extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <h4>Mensajero</h4>
         <form onSubmit={this.addMessage}>
           <input
@@ -55,7 +53,7 @@ class Messenger extends React.Component {
           <button>Enviar</button>
         </form>
         <MsgList msgList={this.state.msgList} handleDelete={this.handleDelete} />
-      </React.Fragment>
+      </div>
     );
   }
 }
